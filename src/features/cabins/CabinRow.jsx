@@ -46,7 +46,6 @@ function CabinRow({cabin}) {
       <Img src={image}></Img>
       <Cabin>{name}</Cabin>
       <Cabin>Fits up to {maxCapacity} guests</Cabin>
-      <Price>{formatCurrency(regularPrice)}</Price>
       <button>Delete</button>
     </TableRow>
   )

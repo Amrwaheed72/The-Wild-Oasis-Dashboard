@@ -54,6 +54,7 @@ function CabinRow({ cabin }) {
       <Cabin>{name}</Cabin>
       <Cabin>Fits up to {maxCapacity} guests</Cabin>
       <Price>{formatCurrency(regularPrice)}</Price>
+      <Discount>{formatCurrency(discount)}</Discount>
       <button onClick={() => mutate(cabinId)}>Delete</button>
     </TableRow>
   );

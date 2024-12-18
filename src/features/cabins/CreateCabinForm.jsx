@@ -66,7 +66,9 @@ function CreateCabinForm() {
   function onSubmit(data) {
     mutate({ ...data, image: data.image.at(0) });
   }
-
+  function onError(errors) {
+    // toast.error(errors);
+  }
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
       <FormRow label="Cabin name" error={errors?.name?.message}>

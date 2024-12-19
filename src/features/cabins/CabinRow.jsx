@@ -3,6 +3,9 @@ import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin, getCabins } from "../../services/apiCabins";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import { FaLaptopHouse } from "react-icons/fa";
+import CreateCabinForm from "./CreateCabinForm";
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -43,6 +46,7 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
+  const [showForm, setShowForm] = useState(false);
   const {
     id: cabinId,
     image,
@@ -57,7 +61,7 @@ function CabinRow({ cabin }) {
   const { idLoading: isDeleting, mutate } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: () => {
-      toast.success('cabin successfully deleted')
+      toast.success("cabin successfully deleted");
       queryClient.invalidateQueries({
         queryKey: ["cabins"],
       });
@@ -65,16 +69,22 @@ function CabinRow({ cabin }) {
     onError: (err) => toast.error(err.message),
   });
   return (
-    <TableRow role="row">
-      <Img src={image}></Img>
-      <Cabin>{name}</Cabin>
-      <Cabin>Fits up to {maxCapacity} guests</Cabin>
-      <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
-      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
-        Delete
-      </button>
-    </TableRow>
+    <>
+      <TableRow role="row">
+        <Img src={image}></Img>
+        <Cabin>{name}</Cabin>
+        <Cabin>Fits up to {maxCapacity} guests</Cabin>
+        <Price>{formatCurrency(regularPrice)}</Price>
+        <Discount>{formatCurrency(discount)}</Discount>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+            Delete
+          </button>
+        </div>
+      </TableRow>
+      {showForm && <CreateCabinForm EditCabin={cabin} />}
+    </>
   );
 }
 

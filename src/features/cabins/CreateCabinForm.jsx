@@ -11,15 +11,13 @@ import { useEditCabin } from "./useEditCabin";
 function CreateCabinForm({ EditCabin = {} }) {
   const { id: editId, ...editValues } = EditCabin;
   const isEditSession = Boolean(editId);
-  const { register, handleSubmit, watch, formState } = useForm({
+  const { register, handleSubmit, watch, formState, reset } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
   const { errors } = formState;
 
   const { isCreating, createCabin } = useCreateCabin();
   const { isEditing, editCabin } = useEditCabin();
-
-  const isWorking = isCreating || isEditing;
 
   function onSubmit(data) {
     const image = data.image
@@ -28,7 +26,14 @@ function CreateCabinForm({ EditCabin = {} }) {
         : data.image[0]
       : null;
     if (isEditSession) {
-      editCabin({ newCabinData: { ...data, image: image }, id: editId });
+      editCabin(
+        { newCabinData: { ...data, image: image }, id: editId },
+        {
+          onSuccess: (data) => {
+            reset();
+          },
+        }
+      );
     } else {
       createCabin({ ...data, image: image });
     }
@@ -37,6 +42,7 @@ function CreateCabinForm({ EditCabin = {} }) {
     // toast.error(errors);
   }
 
+  const isWorking = isCreating || isEditing;
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
       <FormRow label="Cabin name" error={errors?.name?.message}>

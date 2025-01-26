@@ -29,11 +29,11 @@ function CreateCabinForm() {
   function onSubmit(data) {
     mutate({ ...data, image: data.image[0] });
   }
-  function onError(errors) {
-    // toast.error(errors);
-  }
+  // function onError(errors) {
+  //   // toast.error(errors);
+  // }
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           disabled={isCreating}

@@ -64,7 +64,7 @@ function CabinRow({ cabin }) {
       regularPrice,
       image,
       discount,
-      description
+      description,
     });
   }
 

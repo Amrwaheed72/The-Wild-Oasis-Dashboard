@@ -5,11 +5,11 @@ import toast from "react-hot-toast";
 export function useDeleteCabin() {
     const queryClient = useQueryClient();
 
-    const { idLoading: isDeleting, mutate:deleteCabin } = useMutation({
+    const { idLoading: isDeleting, mutate: deleteCabin } = useMutation({
         mutationFn: deleteCabinApi,
         onSuccess: () => {
             toast.success("cabin successfully deleted");
-            queryClient.invalidateQueries({
+            queryClient.invalidateQueries({ //this make refetch the data after deleting
                 queryKey: ["cabins"],
             });
         },

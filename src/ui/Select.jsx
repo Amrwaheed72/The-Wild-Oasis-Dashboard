@@ -21,7 +21,7 @@ function Select({ options, value, onChange, ...props }) {
           {option.label}
         </option>
       ))}
-   
+    </StyledSelect>
   );
 }
 

@@ -80,6 +80,7 @@ function BookingRow({ booking }) {
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
     </Table.Row>
+    
   );
 }
 

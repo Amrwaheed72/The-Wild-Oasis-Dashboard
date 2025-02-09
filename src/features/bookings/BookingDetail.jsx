@@ -11,7 +11,7 @@ import ButtonText from "../../ui/ButtonText";
 import Spinner from "../../ui/Spinner";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
-import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import { HiArrowUpOnSquare } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckout.js";
 
@@ -25,7 +25,7 @@ function BookingDetail() {
   const { booking = {}, isPending, error } = useBookingDetails();
   const moveBack = useMoveBack();
   const navigate = useNavigate();
-   const { checkout, isCheckingout } = useCheckout();
+  const { checkout, isCheckingout } = useCheckout();
 
   if (isPending) return <Spinner />;
   if (error) return console.error("error loading the details of this booking");

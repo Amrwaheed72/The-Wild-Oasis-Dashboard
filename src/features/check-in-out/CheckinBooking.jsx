@@ -8,6 +8,12 @@ import Button from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
+import { useBookingDetails } from "../bookings/useBookingDetails";
+import Spinner from "../../ui/Spinner";
+import { useEffect, useState } from "react";
+import Checkbox from "../../ui/Checkbox";
+import { formatCurrency } from "../../utils/helpers";
+import { useCheckin } from "./useCheckin";
 
 const Box = styled.div`
   /* Box */
@@ -18,9 +24,21 @@ const Box = styled.div`
 `;
 
 function CheckinBooking() {
+  const [confirmPaid, setConfirmPaid] = useState(false);
+  const { booking, isPending, error } = useBookingDetails();
   const moveBack = useMoveBack();
 
-  const booking = {};
+  const { checkin, isCheckingin } = useCheckin();
+
+  //
+  useEffect(() => {
+    if (booking) {
+      setConfirmPaid(booking.isPaid ?? false);
+    }
+  }, [booking]);
+  //
+  if (isPending) return <Spinner />;
+  if (error) return console.error("error loading checkin page");
 
   const {
     id: bookingId,
@@ -29,9 +47,12 @@ function CheckinBooking() {
     numGuests,
     hasBreakfast,
     numNights,
+    status,
   } = booking;
-
-  function handleCheckin() {}
+  function handleCheckin() {
+    if (!confirmPaid) return;
+    checkin(bookingId);
+  }
 
   return (
     <>
@@ -41,9 +62,21 @@ function CheckinBooking() {
       </Row>
 
       <BookingDataBox booking={booking} />
-
+      <Box>
+        <Checkbox
+          disabled={confirmPaid || isCheckingin}
+          checked={confirmPaid}
+          onChange={() => setConfirmPaid((confirm) => !confirm)}
+          id="confirm"
+        >
+          I Confirm that {guests.fullName} has paid the total amount of{" "}
+          {formatCurrency(totalPrice)}
+        </Checkbox>
+      </Box>
       <ButtonGroup>
-        <Button onClick={handleCheckin}>Check in booking #{bookingId}</Button>
+        <Button disabled={!confirmPaid || isCheckingin} onClick={handleCheckin}>
+          Check in booking #{bookingId}
+        </Button>
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>

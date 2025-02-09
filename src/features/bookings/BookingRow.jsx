@@ -7,8 +7,9 @@ import Table from "../../ui/Table";
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import Menus from "../../ui/Menus";
-import { HiEye } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiEye } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -38,6 +39,7 @@ const Amount = styled.div`
 `;
 
 function BookingRow({ booking }) {
+  const [isCheckin, setIsCheckin] = useState("");
   const navigate = useNavigate();
   const {
     id: bookingId,
@@ -51,7 +53,6 @@ function BookingRow({ booking }) {
     guests: { fullName: guestName, email },
     cabins: { name: cabinName },
   } = booking;
-
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
@@ -92,6 +93,14 @@ function BookingRow({ booking }) {
           >
             See Details
           </Menus.Button>
+          {status === "unconfirmed" ? (
+            <Menus.Button
+              icon={<HiArrowDownOnSquare />}
+              onClick={() => navigate(`/checkin/${bookingId}`)}
+            >
+              Check in
+            </Menus.Button>
+          ) : null}
         </Menus.List>
       </Menus.Menu>
     </Table.Row>

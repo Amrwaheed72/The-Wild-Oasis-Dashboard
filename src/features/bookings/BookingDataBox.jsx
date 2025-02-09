@@ -116,7 +116,7 @@ function BookingDataBox({ booking }) {
     observations,
     isPaid,
     guests: {
-      fullName: guestName,
+      fullName: guestName ,
       email,
       country,
       countryFlag,

@@ -15,7 +15,7 @@ export function useLogin() {
         },
         onError: (err) => {
             toast.error('email or password are not correct ')
-            
+            console.log("ERROR", err)
         }
     })
     return { login, islogin }

@@ -11,7 +11,7 @@ export function useLogin() {
         onSuccess: (user) => {
             queryclient.setQueryData(['user'], user.user)
             toast.success('login successfully')
-            navigate('/dashboard')
+            navigate('/dashboard', { replace: true })
         },
         onError: (err) => {
             toast.error('email or password are not correct ')

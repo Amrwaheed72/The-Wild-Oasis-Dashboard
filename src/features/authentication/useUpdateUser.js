@@ -1,21 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createEditCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import { updateCurrentUser } from "../../services/apiAuth";
 
-export function useEditCabin() {
+export function useUpdateUser() {
     const { reset } = useForm();
     const queryClient = useQueryClient();
-    const { isPending: isEditing, mutate: editCabin } = useMutation({
-        mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
+    const { isPending: isUpdating, mutate: updateUser } = useMutation({
+        mutationFn: updateCurrentUser,
         onSuccess: () => {
-            toast.success("Cabin Edited Successfully");
+            toast.success("User Account Updated Successfully");
             queryClient.invalidateQueries({
-                queryKey: ["cabins"],
+                queryKey: ["user"],
             });
             reset();
         },
         onError: (err) => toast.error(err.message),
     });
-    return { isEditing, editCabin }
+    return { isUpdating, updateUser }
 }

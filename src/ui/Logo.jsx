@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Tilt } from "react-tilt";
+import { useDarkMode } from "../context/DarkmodeContext";
 
 const StyledLogo = styled.div`
   text-align: center;
@@ -15,8 +16,13 @@ const Img = styled.img`
   height: 9.6rem;
   width: auto;
 `;
-const NameHeader = styled.h3`
+const NameHeaderWhiteMode = styled.h3`
   margin-bottom: 50px;
+  color: black;
+`;
+const NameHeaderDarkMode = styled.h3`
+  margin-bottom: 50px;
+  color: #ececec;
 `;
 const StyledImage = styled.img`
   height: 9.6rem;
@@ -35,12 +41,18 @@ const defaultOptions = {
   easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
 };
 function Logo() {
+  const { isDarkMode } = useDarkMode();
+  const src = isDarkMode ? "/Amr.png" : "/Amr.png";
   return (
     <StyledLogo>
       <Tilt options={defaultOptions} style={{ height: 100, width: 100 }}>
-        <StyledImage src="/Amr.png" alt="Logo" />
+        <StyledImage src={src} alt="Logo" />
       </Tilt>
-      <NameHeader>Amr Waheed</NameHeader>
+      {isDarkMode ? (
+        <NameHeaderDarkMode>Amr Waheed</NameHeaderDarkMode>
+      ) : (
+        <NameHeaderWhiteMode>Amr Waheed</NameHeaderWhiteMode>
+      )}
     </StyledLogo>
   );
 }

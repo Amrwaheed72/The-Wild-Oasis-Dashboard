@@ -21,9 +21,11 @@
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.0.2",
     "react-tilt": "^1.0.2",
+    "recharts": "^2.15.1",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.18.6",
     "@eslint/js": "^9.15.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -35,7 +37,6 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
     "vite": "^6.0.1",
-    "vite-plugin-eslint": "^1.8.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.18.6"
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

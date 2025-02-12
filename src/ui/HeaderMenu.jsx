@@ -9,19 +9,19 @@ const StyledHeaderMenu = styled.ul`
   gap: 0.4rem;
 `;
 function HeaderMenu() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   return (
     <StyledHeaderMenu>
       <li>
-       <ButtonIcon onClick={()=>navigate('/account')}>
-        <HiOutlineUser />
-       </ButtonIcon>
-      </li>
-      <li>
-        <Logout />
+        <ButtonIcon onClick={() => navigate("/account")}>
+          <HiOutlineUser />
+        </ButtonIcon>
       </li>
       <li>
         <DarkModeToggle />
+      </li>
+      <li>
+        <Logout />
       </li>
     </StyledHeaderMenu>
   );

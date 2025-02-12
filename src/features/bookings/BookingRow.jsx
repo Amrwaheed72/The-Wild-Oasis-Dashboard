@@ -12,12 +12,9 @@ import {
   HiArrowUpOnSquare,
   HiEye,
   HiTrash,
-  HiXMark,
 } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useCheckout } from "../check-in-out/useCheckout";
-import { IoIosExit } from "react-icons/io";
 import { useDeleteBooking } from "./useDeleteBooking";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
@@ -50,17 +47,15 @@ const Amount = styled.div`
 `;
 
 function BookingRow({ booking }) {
-  const [isCheckin, setIsCheckin] = useState("");
   const { checkout, isCheckingout } = useCheckout();
   const navigate = useNavigate();
   const { deletingBooking, isDeletingBooking } = useDeleteBooking();
   const {
     id: bookingId,
-    created_at,
     startDate,
     endDate,
     numNights,
-    numGuests,
+
     totalPrice,
     status,
     guests: { fullName: guestName, email },

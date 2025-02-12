@@ -12,10 +12,10 @@ const StyledLogo = styled.div`
   gap: 1.2rem;
 `;
 
-const Img = styled.img`
-  height: 9.6rem;
-  width: auto;
-`;
+// const Img = styled.img`
+//   height: 9.6rem;
+//   width: auto;
+// `;
 const NameHeaderWhiteMode = styled.h3`
   margin-bottom: 50px;
   color: black;

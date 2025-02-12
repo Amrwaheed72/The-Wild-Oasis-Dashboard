@@ -50,7 +50,6 @@ function CheckinBooking() {
     numGuests,
     hasBreakfast,
     numNights,
-    status,
   } = booking;
   function handleCheckin() {
     if (!confirmPaid) return;

@@ -9,9 +9,8 @@ import SpinnerMini from "../../ui/SpinnerMini";
 function LoginForm() {
   const [email, setEmail] = useState("amramr@gmail.com");
   const [password, setPassword] = useState("amramr123");
-
   const { login, islogin } = useLogin();
-
+//
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
@@ -25,7 +24,7 @@ function LoginForm() {
       }
     );
   }
-
+//
   return (
     <Form onSubmit={handleSubmit}>
       <FormRowVertical label="Email address">

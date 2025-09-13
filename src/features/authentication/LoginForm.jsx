@@ -10,7 +10,7 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, islogin } = useLogin();
-//
+  //
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
@@ -24,7 +24,7 @@ function LoginForm() {
       }
     );
   }
-//
+  //
   return (
     <Form onSubmit={handleSubmit}>
       <FormRowVertical label="Email address">
@@ -51,6 +51,14 @@ function LoginForm() {
       <FormRowVertical>
         <Button disabled={islogin} size="large">
           {!islogin ? "Log in" : <SpinnerMini />}
+        </Button>
+      </FormRowVertical>
+      <FormRowVertical>
+        <Button onClick={()=>{
+          setEmail('guest@gmail.com')
+          setPassword('guest123')
+        }} disabled={islogin} size="large">
+          {!islogin ? "Log in as guest" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
     </Form>

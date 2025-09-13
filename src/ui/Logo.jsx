@@ -42,7 +42,7 @@ const defaultOptions = {
 };
 function Logo() {
   const { isDarkMode } = useDarkMode();
-  const src = isDarkMode ? "/Amr.png" : "/Amr.png";
+  const src = isDarkMode ? "/logo-dark.png" : "/logo-light.png";
   return (
     <StyledLogo>
       <Tilt options={defaultOptions} style={{ height: 100, width: 100 }}>

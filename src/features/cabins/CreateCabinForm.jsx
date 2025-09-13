@@ -20,6 +20,7 @@ function CreateCabinForm({ EditCabin = {}, onCloseModal }) {
   const { isEditing, editCabin } = useEditCabin();
 
   function onSubmit(data) {
+    console.log(data)
     const image = data.image
       ? typeof data.image === "string"
         ? data.image
